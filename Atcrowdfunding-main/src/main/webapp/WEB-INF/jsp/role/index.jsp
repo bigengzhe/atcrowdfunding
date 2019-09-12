@@ -41,8 +41,7 @@ table tbody td:nth-child(even) {
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li style="padding-top: 8px;"><%@include
-							file="/WEB-INF/jsp/common/userinfo.jsp"%>
+					<li style="padding-top: 8px;"><%@include file="/WEB-INF/jsp/common/userinfo.jsp"%>
 					</li>
 					<li style="margin-left: 10px; padding-top: 8px;">
 						<button type="button" class="btn btn-default btn-danger">

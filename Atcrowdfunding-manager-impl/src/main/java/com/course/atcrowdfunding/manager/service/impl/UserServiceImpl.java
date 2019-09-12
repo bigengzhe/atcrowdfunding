@@ -137,4 +137,14 @@ public class UserServiceImpl implements UserService {
 		return userMapper.queryRoleByUserid(id);
 	}
 
+	@Override
+	public int saveUserRoleRelationship(Integer userid, Data data) {
+		return userMapper.saveUserRoleRelationship(userid,data);
+	}
+
+	@Override
+	public int deleteUserRoleRelationship(Integer userid, Data data) {
+		return userMapper.deleteUserRoleRelationship(userid,data);
+	}
+
 }

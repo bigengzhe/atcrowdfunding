@@ -33,4 +33,8 @@ public interface UserService {
 	List<Role> querAllRole();
 
 	List<Integer> queryRoleByUserid(Integer id);
+
+	int deleteUserRoleRelationship(Integer userid, Data data);
+
+	int saveUserRoleRelationship(Integer userid, Data data);
 }

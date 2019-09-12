@@ -58,7 +58,7 @@ public class UserController {
 			AjaxResult result = new AjaxResult();
 			try {
 				
-				//userService.saveUserRoleRelationship(userid,data);
+				userService.saveUserRoleRelationship(userid,data);
 				result.setSuccess(true);
 			} catch (Exception e) {
 				result.setSuccess(false);
@@ -76,7 +76,7 @@ public class UserController {
 			AjaxResult result = new AjaxResult();
 			try {
 				
-				//userService.deleteUserRoleRelationship(userid,data);
+				userService.deleteUserRoleRelationship(userid,data);
 				result.setSuccess(true);
 			} catch (Exception e) {
 				result.setSuccess(false);

@@ -2,8 +2,12 @@ package com.course.atcrowdfunding.manager.dao;
 
 import com.course.atcrowdfunding.bean.Role;
 import com.course.atcrowdfunding.bean.User;
+import com.course.atcrowdfunding.vo.Data;
+
 import java.util.List;
 import java.util.Map;
+
+import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
@@ -35,4 +39,9 @@ public interface UserMapper {
 	List<Role> querAllRole();
 
 	List<Integer> queryRoleByUserid(Integer id);
+
+	int saveUserRoleRelationship(@Param("userid") Integer userid,@Param("data") Data data);
+
+	int deleteUserRoleRelationship(@Param("userid") Integer userid,@Param("data")  Data data);
+	
 }

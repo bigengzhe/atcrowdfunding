@@ -129,4 +129,5 @@
 			#{roleid}
 		</foreach>
 	</delete>
+	
 </mapper>
