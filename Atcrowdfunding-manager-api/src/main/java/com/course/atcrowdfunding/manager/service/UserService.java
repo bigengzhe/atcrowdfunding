@@ -3,6 +3,7 @@ package com.course.atcrowdfunding.manager.service;
 import java.util.List;
 import java.util.Map;
 
+import com.course.atcrowdfunding.bean.Permission;
 import com.course.atcrowdfunding.bean.Role;
 import com.course.atcrowdfunding.bean.User;
 import com.course.atcrowdfunding.util.Page;
@@ -13,7 +14,7 @@ public interface UserService {
 	User queryUserlogin(Map<String, Object> paramMap);
 
 	//@Deprecated
-	//Page queryPage(Integer pageno, Integer pagesize);
+	Page queryPage(Integer pageno, Integer pagesize);
 	
 	
 	int saveUser(User user);
@@ -37,4 +38,6 @@ public interface UserService {
 	int deleteUserRoleRelationship(Integer userid, Data data);
 
 	int saveUserRoleRelationship(Integer userid, Data data);
+
+	List<Permission> queryPermissionByUserid(Integer id);
 }

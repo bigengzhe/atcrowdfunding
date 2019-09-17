@@ -12,6 +12,11 @@
   		<artifactId>Atcrowdfunding-common</artifactId>
   		<version>0.0.1-SNAPSHOT</version>
   	</dependency>
+  	<dependency>
+			<groupId>com.course.maven</groupId>
+			<artifactId>Atcrowdfunding-potal-api</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+	</dependency>
   </dependencies>
   <parent>
   	<groupId>com.course.maven</groupId>

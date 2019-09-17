@@ -29,5 +29,34 @@ public class PermissionServiceImpl implements PermissionService {
 	public List<Permission> queryAllPermission() {
 		return permissionMapper.queryAllPermission();
 	}
+
+	@Override
+	public int savePermission(Permission permission) {
+		// TODO Auto-generated method stub
+		return permissionMapper.insert(permission);
+	}
+
+	@Override
+	public int updatePermission(Permission permission) {
+		// TODO Auto-generated method stub
+		return permissionMapper.updateByPrimaryKey(permission);
+	}
+
+	@Override
+	public Permission getPermissionById(Integer id) {
+		
+		return permissionMapper.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public int deletePermission(Integer id) {
+		// TODO Auto-generated method stub
+		return permissionMapper.deleteByPrimaryKey(id);
+	}
+
+	@Override
+	public List<Integer> queryPermissionidsByRoleid(Integer roleid) {
+		return permissionMapper.queryPermissionidsByRoleid(roleid);
+	}
 	
 }

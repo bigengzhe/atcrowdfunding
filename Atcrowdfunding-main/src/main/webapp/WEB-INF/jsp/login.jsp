@@ -46,7 +46,7 @@
 		  </div>
         <div class="checkbox">
           <label>
-            <input type="checkbox" value="remember-me"> 记住我
+            <input type="checkbox" value="remember-me" value="0"> 记住我
           </label>
           <br>
           <label>
@@ -101,7 +101,15 @@
     			layer.close(loadingIndex);
     			if(result.success){    				
     				//跳转主页面.
-    				window.location.href="${APP_PATH}/main.htm";
+    				if("member"==result.data){
+    					window.location.href="${APP_PATH}/member.htm";
+    				}else if("user"==result.data){
+    					//跳转主页面.
+        				window.location.href="${APP_PATH}/main.htm";
+    				}else{
+    					layer.msg("登录类型不合法!", {time:1000, icon:5, shift:6});   
+    				}
+    				
     			}else{
     				layer.msg(result.message, {time:1000, icon:5, shift:6}); 
     			}

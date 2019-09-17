@@ -12,4 +12,14 @@ public interface PermissionService {
 
 	List<Permission> queryAllPermission();
 
+	int savePermission(Permission permission);
+
+	Permission getPermissionById(Integer id);
+
+	int updatePermission(Permission permission);
+
+	int deletePermission(Integer id);
+
+	List<Integer> queryPermissionidsByRoleid(Integer roleid);
+
 }

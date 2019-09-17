@@ -195,7 +195,7 @@ public class UserController {
 		 
 		return result; 
 	}*/
-	//条件查询
+	/*//条件查询
 	@ResponseBody
 	@RequestMapping("/index")
 	public Object index(@RequestParam(value="pageno",required=false,defaultValue="1") Integer pageno,
@@ -227,10 +227,10 @@ public class UserController {
 		 
 		return result; //将对象序列化为JSON字符串,以流的形式返回.
 	}
-	
+	*/
 	
 	//异步请求
-	/*@ResponseBody
+	@ResponseBody
 	@RequestMapping("/index")
 	public Object index(@RequestParam(value="pageno",required=false,defaultValue="1") Integer pageno,
 				@RequestParam(value="pagesize",required=false,defaultValue="10") Integer pagesize){
@@ -247,7 +247,7 @@ public class UserController {
 		}
 		 
 		return result; //将对象序列化为JSON字符串,以流的形式返回.
-	}*/
+	}
 	
 	
 	//同步请求

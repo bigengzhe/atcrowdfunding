@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.course.atcrowdfunding.bean.Permission;
 import com.course.atcrowdfunding.bean.Role;
 import com.course.atcrowdfunding.bean.User;
 import com.course.atcrowdfunding.exception.LoginFailException;
@@ -55,7 +56,7 @@ public class UserServiceImpl implements UserService {
 		return page;
 	}
 	
-	/*@Override
+	@Override
 	public Page queryPage(Integer pageno, Integer pagesize) {
 		Page page = new Page(pageno,pagesize);
 		
@@ -63,14 +64,14 @@ public class UserServiceImpl implements UserService {
 		
 		List<User> datas = userMapper.queryList(startIndex,pagesize);
 		
-		page.setDatas(datas);
+		page.setData(datas);
 		
 		Integer totalsize = userMapper.queryCount();
 		
 		page.setTotalsize(totalsize);		
 		
 		return page;
-	}*/
+	}
 
 	@Override
 	public int saveUser(User user) {
@@ -146,5 +147,8 @@ public class UserServiceImpl implements UserService {
 	public int deleteUserRoleRelationship(Integer userid, Data data) {
 		return userMapper.deleteUserRoleRelationship(userid,data);
 	}
-
+	@Override
+	public List<Permission> queryPermissionByUserid(Integer id) {
+		return userMapper.queryPermissionByUserid(id);
+	}
 }

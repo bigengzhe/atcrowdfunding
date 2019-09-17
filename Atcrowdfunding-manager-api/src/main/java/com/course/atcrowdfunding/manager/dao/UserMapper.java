@@ -1,5 +1,6 @@
 package com.course.atcrowdfunding.manager.dao;
 
+import com.course.atcrowdfunding.bean.Permission;
 import com.course.atcrowdfunding.bean.Role;
 import com.course.atcrowdfunding.bean.User;
 import com.course.atcrowdfunding.vo.Data;
@@ -21,9 +22,9 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
 
 	User queryUserlogin(Map<String, Object> paramMap);
-	//List<User> queryList(@Param("startIndex") Integer startIndex, @Param("pagesize")  Integer pagesize);
+	List<User> queryList(@Param("startIndex") Integer startIndex, @Param("pagesize")  Integer pagesize);
 
-	//Integer queryCount();
+	Integer queryCount();
 
 
 	List<User> queryList(Map<String, Object> paramMap);
@@ -43,5 +44,7 @@ public interface UserMapper {
 	int saveUserRoleRelationship(@Param("userid") Integer userid,@Param("data") Data data);
 
 	int deleteUserRoleRelationship(@Param("userid") Integer userid,@Param("data")  Data data);
+
+	List<Permission> queryPermissionByUserid(Integer id);
 	
 }
