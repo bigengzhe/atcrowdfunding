@@ -30,9 +30,9 @@ public class UserServiceImpl implements UserService {
 		
 		User user = userMapper.queryUserlogin(paramMap);
 		
-		if(user==null){
+		/*if(user==null){
 			throw new LoginFailException("用户账号或密码不正确!");
-		}
+		}*/
 		
 		return user;
 	}
@@ -44,13 +44,17 @@ public class UserServiceImpl implements UserService {
 		
 		Integer startIndex = page.getStartIndex();
 		paramMap.put("startIndex", startIndex);
+		List<User> datas=null;
+		Integer totalsize;
+		if(paramMap.get("queryText")!=null){
+			datas= userMapper.selectList(paramMap);
+			totalsize=userMapper.selectCount(paramMap);
+		}else{
+			datas= userMapper.queryList(paramMap);
+			totalsize=userMapper.queryCount(paramMap);
+		}
 		
-		List<User> datas = userMapper.queryList(paramMap);
-		
-		page.setDatas(datas);
-		
-		Integer totalsize = userMapper.queryCount(paramMap);
-		
+		page.setData(datas);
 		page.setTotalsize(totalsize);		
 		
 		return page;
@@ -150,5 +154,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<Permission> queryPermissionByUserid(Integer id) {
 		return userMapper.queryPermissionByUserid(id);
+	}
+
+	@Override
+	public User getUserByName(String loginacct) {
+		
+		return userMapper.getUserByName(loginacct);
 	}
 }

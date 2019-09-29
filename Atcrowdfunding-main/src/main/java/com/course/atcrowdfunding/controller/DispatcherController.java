@@ -159,7 +159,7 @@ public class DispatcherController {
 			String rememberme,HttpSession session,HttpServletResponse response){
 	
 	AjaxResult result = new AjaxResult();
-	//System.out.println("hhhhhh");
+	
 	try {
 		Map<String,Object> paramMap = new HashMap<String,Object>();
 		paramMap.put("loginacct", loginacct);
@@ -169,13 +169,23 @@ public class DispatcherController {
 		if("member".equals(type)){
 			
 			Member member = memberService.queryMebmerlogin(paramMap);
-			
+			if(member==null){
+				result.setMessage("用户名丢了，重新注册一个吧");
+				result.setSuccess(false);
+				return result ;
+			}else if(!member.getUserpswd().equals(MD5Util.digest(userpswd))){
+				result.setMessage("密码不对呦");
+				result.setSuccess(false);
+				return result ;
+			}else{
+				result.setSuccess(true);
+			}
 			session.setAttribute(Const.LOGIN_MEMBER, member);
-			
+			System.out.println(rememberme);
 			if("1".equals(rememberme)){
 				String logincode = "\"loginacct="+member.getLoginacct()+"&userpwd="+member.getUserpswd()+"&logintype=member\"";
 				//loginacct=zhangsan&userpwd=21232f297a57a5a743894a0e4a801fc3&logintype=member
-				System.out.println("用户-存放到Cookie中的键值对：logincode::::::::::::"+logincode);
+				//System.out.println("用户-存放到Cookie中的键值对：logincode::::::::::::"+logincode);
 				
 				Cookie c = new Cookie("logincode",logincode);
 				
@@ -187,14 +197,24 @@ public class DispatcherController {
 			
 		}else if("user".equals(type)){
 			User user = userService.queryUserlogin(paramMap);
-			//System.out.println(user.getUserpswd());
+			if(user==null){
+				result.setMessage("用户名丢了，重新注册一个吧");
+				result.setSuccess(false);
+				return result ;
+			}else if(!user.getUserpswd().equals(MD5Util.digest(userpswd))){
+				result.setMessage("密码不对呦");
+				result.setSuccess(false);
+				return result ;
+			}else{
+				result.setSuccess(true);
+			}
+				
 			session.setAttribute(Const.LOGIN_USER, user);
 			
-
 			if("1".equals(rememberme)){
 				String logincode = "\"loginacct="+user.getLoginacct()+"&userpwd="+user.getUserpswd()+"&logintype=user\"";
 				//loginacct=superadmin&userpwd=21232f297a57a5a743894a0e4a801fc3&logintype=user
-				System.out.println("用户-存放到Cookie中的键值对：logincode::::::::::::"+logincode);
+				//System.out.println("用户-存放到Cookie中的键值对：logincode::::::::::::"+logincode);
 				
 				Cookie c = new Cookie("logincode",logincode);
 				

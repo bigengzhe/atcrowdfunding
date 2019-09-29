@@ -40,20 +40,20 @@
 		  </div>
 		  <div class="form-group has-success has-feedback">
 			<select id="ftype" class="form-control" name="type">
-                <option value="member">会员</option>
-                <option value="user" selected>管理</option>
+                <option value="member" selected>会员</option>
+                <option value="user" >管理</option>
             </select>
 		  </div>
         <div class="checkbox">
           <label>
-            <input type="checkbox" value="remember-me" value="0"> 记住我
+            <input id="rememberme" type="checkbox" value="1"> 记住我两周
           </label>
           <br>
           <label>
             忘记密码
           </label>
           <label style="float:right">
-            <a href="reg.html">我要注册</a>
+            <a href="${APP_PATH }/member/reg.htm">我要注册</a>
           </label>
         </div>
         <a class="btn btn-lg btn-success btn-block" onclick="dologin()" > 登录</a>
@@ -84,12 +84,14 @@
     		return false ;
     	}
     	var loadingIndex = -1 ;
+    	var flag = $("#rememberme")[0].checked; //是否选中【记住我】
     	$.ajax({
     		type : "POST",
     		data : {
     			loginacct : floginacct.val(),
     			userpswd : fuserpswd.val(),
-    			type : ftype.val()
+    			type : ftype.val(),
+    			rememberme:flag?"1":"0"
     		},
     		url : "${APP_PATH}/doLogin.do",
     		beforeSend : function(){

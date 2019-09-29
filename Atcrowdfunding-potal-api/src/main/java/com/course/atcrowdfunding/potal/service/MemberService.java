@@ -21,4 +21,6 @@ public interface MemberService {
 
 	List<Map<String, Object>> queryCertByMemberid(Integer memberid);
 
+	void insert(Member member);
+
 }

@@ -27,7 +27,7 @@ public interface UserMapper {
 	Integer queryCount();
 
 
-	List<User> queryList(Map<String, Object> paramMap);
+	List<User> queryList(Map<String, Object> paramMap);//全部分页查询
 
 	Integer queryCount(Map<String, Object> paramMap);
 	//int deleteBatchUserByVO(Data data);
@@ -46,5 +46,10 @@ public interface UserMapper {
 	int deleteUserRoleRelationship(@Param("userid") Integer userid,@Param("data")  Data data);
 
 	List<Permission> queryPermissionByUserid(Integer id);
+
+	User getUserByName(String loginacct);
+
+	List<User> selectList(Map<String, Object> paramMap);//按条件查询
+	Integer selectCount(Map<String, Object> paramMap);//同上
 	
 }

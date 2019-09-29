@@ -52,7 +52,7 @@
 	<select id="queryUserlogin" parameterType="map" resultMap="BaseResultMap">
 		select id, loginacct, userpswd,
 		username, email, createtime
-		from t_user where loginacct=#{loginacct} and userpswd=#{userpswd}
+		from t_user where loginacct=#{loginacct}
 	</select>
 	 
 	<select id="queryList" resultMap="BaseResultMap">
@@ -138,5 +138,28 @@
 		and t_role.`id`=t_user_role.`roleid`
 		and t_user_role.`userid` = t_user.`id` 
 		and t_user.id=#{userid} order by t_permission.id
+	</select>
+	<select id="getUserByName"  resultType="User">
+		select *
+		from t_user  where loginacct=#{loginacct}
+	</select>
+	
+	 <select id="selectList" resultMap="BaseResultMap">
+		select id, loginacct, userpswd,
+		username, email, createtime
+		from t_user 
+		<where>
+			<if test="queryText!=null">loginacct like concat("%",#{queryText},"%")</if>
+		</where> 
+		 order by createtime desc
+		 limit #{startIndex},#{pagesize} 
+	</select>
+	
+	<select id="selectCount" resultType="int">
+		select count(*)
+		from t_user
+		<where>
+			<if test="queryText!=null">loginacct like concat("%",#{queryText},"%")</if>
+		</where>
 	</select>
 </mapper>

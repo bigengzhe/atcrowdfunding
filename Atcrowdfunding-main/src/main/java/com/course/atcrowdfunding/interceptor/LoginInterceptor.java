@@ -28,6 +28,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		uri.add("/doLogin.do");
 		uri.add("/logout.do");
 		uri.add("/index.htm");
+		uri.add("/member/reg.htm");
+		uri.add("/member/doReg.do");
+		uri.add("/project/project.htm");
 		//获取请求路径.
 		String servletPath = request.getServletPath();
 		

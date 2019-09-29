@@ -40,4 +40,6 @@ public interface UserService {
 	int saveUserRoleRelationship(Integer userid, Data data);
 
 	List<Permission> queryPermissionByUserid(Integer id);
+
+	User getUserByName(String loginacct);
 }

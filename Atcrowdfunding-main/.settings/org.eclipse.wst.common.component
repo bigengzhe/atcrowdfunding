@@ -11,10 +11,10 @@
         <dependent-module archiveName="Atcrowdfunding-manager-api-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/Atcrowdfunding-manager-api/Atcrowdfunding-manager-api">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="Atcrowdfunding-bean-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/Atcrowdfunding-bean/Atcrowdfunding-bean">
+        <dependent-module archiveName="Atcrowdfunding-common-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/Atcrowdfunding-common/Atcrowdfunding-common">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="Atcrowdfunding-common-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/Atcrowdfunding-common/Atcrowdfunding-common">
+        <dependent-module archiveName="Atcrowdfunding-bean-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/Atcrowdfunding-bean/Atcrowdfunding-bean">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="Atcrowdfunding-potal-api-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/Atcrowdfunding-potal-api/Atcrowdfunding-potal-api">

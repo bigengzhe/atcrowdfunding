@@ -7,7 +7,7 @@ import java.util.Map;
 public interface MemberMapper {
     int deleteByPrimaryKey(Integer id);
 
-    int insert(Member record);
+    int insert(Member member);
 
     Member selectByPrimaryKey(Integer id);
 

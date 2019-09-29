@@ -115,6 +115,7 @@
 	<script type="text/javascript" src="${APP_PATH }/jquery/layer/layer.js"></script>
 	
         <script type="text/javascript">
+        
             $(function () {
 			    $(".list-group-item").click(function(){
 				    if ( $(this).find("ul") ) {
@@ -126,7 +127,7 @@
 						}
 					}
 				});
-			    queryPageUser(1);
+			    queryPageUser(1,"${APP_PATH}/user/index.do");
 			    showMenu();
             });
             $("tbody .btn-success").click(function(){
@@ -139,7 +140,7 @@
             
             function pageChange(pageno){
             	//window.location.href="${APP_PATH}/user/index.do?pageno="+pageno ;
-            	queryPageUser(pageno);
+            	queryPageUser(pageno,"${APP_PATH}/user/index.do");
             }
             
             
@@ -150,12 +151,12 @@
             
             
             var loadingIndex = -1 ;
-            function queryPageUser(pageno){
+            function queryPageUser(pageno,myurl){
             	jsonObj.pageno = pageno ;
             	$.ajax({
             		type : "POST",
             		data : jsonObj,
-            		url : "${APP_PATH}/user/index.do",
+            		url : myurl,
             		beforeSend : function(){
             			loadingIndex = layer.load(2, {time: 10*1000});
             			return true ;
@@ -167,20 +168,24 @@
             				var data = page.data ;
             				
             				var content = '';
-            				
+            				/* //alert("${loginUser.username }"); */
             				$.each(data,function(i,n){
-            					content+='<tr>';
-                				content+='  <td>'+(i+1)+'</td>';
-                				content+='  <td><input type="checkbox" id="'+n.id+'"></td>';
-                				content+='  <td>'+n.loginacct+'</td>';
-                				content+='  <td>'+n.username+'</td>';
-                				content+='  <td>'+n.email+'</td>';
-                				content+='  <td>';
-                				content+='	  <button type="button" onclick="window.location.href=\'${APP_PATH}/user/assignRole.htm?id='+n.id+'\'" class="btn btn-success btn-xs"><i class=" glyphicon glyphicon-check"></i></button>';
-                				content+='	  <button type="button" onclick="window.location.href=\'${APP_PATH}/user/toUpdate.htm?id='+n.id+'\'"  class="btn btn-primary btn-xs"><i class=" glyphicon glyphicon-pencil"></i></button>';
-                				content+='	  <button type="button" onclick="deleteUser('+n.id+',\''+n.loginacct+'\')" class="btn btn-danger btn-xs"><i class=" glyphicon glyphicon-remove"></i></button>';
-                				content+='  </td>';
-                				content+='</tr>';
+            					if(n.id=="${loginUser.id }"){
+            						
+            					}else{
+            						content+='<tr>';
+                    				content+='  <td>'+(i+1)+'</td>';
+                    				content+='  <td><input type="checkbox" id="'+n.id+'"></td>';
+                    				content+='  <td>'+n.loginacct+'</td>';
+                    				content+='  <td>'+n.username+'</td>';
+                    				content+='  <td>'+n.email+'</td>';
+                    				content+='  <td>';
+                    				content+='	  <button type="button" onclick="window.location.href=\'${APP_PATH}/user/assignRole.htm?id='+n.id+'\'" class="btn btn-success btn-xs"><i class=" glyphicon glyphicon-check"></i></button>';
+                    				content+='	  <button type="button" onclick="window.location.href=\'${APP_PATH}/user/toUpdate.htm?id='+n.id+'\'"  class="btn btn-primary btn-xs"><i class=" glyphicon glyphicon-pencil"></i></button>';
+                    				content+='	  <button type="button" onclick="deleteUser('+n.id+',\''+n.loginacct+'\')" class="btn btn-danger btn-xs"><i class=" glyphicon glyphicon-remove"></i></button>';
+                    				content+='  </td>';
+                    				content+='</tr>';
+            					}
             				});
             				
             				
@@ -225,7 +230,7 @@
             $("#queryBtn").click(function(){
             	var queryText = $("#queryText").val();
             	jsonObj.queryText = queryText ;
-            	queryPageUser(1);
+            	queryPageUser(1,"${APP_PATH}/user/selectIndex.do");
             });
             
 			function deleteUser(id,loginacct){

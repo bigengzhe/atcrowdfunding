@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,8 +33,10 @@ public class UserController {
 	public String toIndex(){		
 		return "user/index";
 	}
+	
 	@RequestMapping("/toAdd")
-	public String toAdd(){		
+	public String toAdd(HttpServletRequest req){		
+		req.setAttribute("url", "/user/toIndex.htm");
 		return "user/add";
 	}
 	@ResponseBody
@@ -40,16 +44,22 @@ public class UserController {
 	public Object doAdd(User user){
 		AjaxResult result = new AjaxResult();
 		try {
+			User user1= userService.getUserByName(user.getLoginacct());
+			if(user1!=null){
+				//System.out.println(user1);
+				
+			}else{
+				int count = userService.saveUser(user);
+				result.setSuccess(count==1);
+			}
 			
-			int count = userService.saveUser(user);
-			result.setSuccess(count==1);
 		} catch (Exception e) {
 			result.setSuccess(false);
 			e.printStackTrace();
-			result.setMessage("保存数据失败!");
+			result.setMessage("用户名已存在，保存数据失败!");
 		}
 		 
-		return result; 
+		return result;
 	}
 	//分配角色
 		@ResponseBody
@@ -126,6 +136,7 @@ public class UserController {
 		
 		User user = userService.getUserById(id);
 		map.put("user", user);
+		map.put("url", "/user/toIndex.htm");
 		
 		return "user/update";
 	}
@@ -195,15 +206,15 @@ public class UserController {
 		 
 		return result; 
 	}*/
-	/*//条件查询
+	//条件查询
 	@ResponseBody
-	@RequestMapping("/index")
+	@RequestMapping("/selectIndex")
 	public Object index(@RequestParam(value="pageno",required=false,defaultValue="1") Integer pageno,
 				@RequestParam(value="pagesize",required=false,defaultValue="10") Integer pagesize,
 				String queryText){
 		AjaxResult result = new AjaxResult();
 		try {
-			
+			System.out.println(queryText);
 			Map paramMap = new HashMap();
 			paramMap.put("pageno", pageno);
 			paramMap.put("pagesize", pagesize);			
@@ -227,7 +238,7 @@ public class UserController {
 		 
 		return result; //将对象序列化为JSON字符串,以流的形式返回.
 	}
-	*/
+	
 	
 	//异步请求
 	@ResponseBody

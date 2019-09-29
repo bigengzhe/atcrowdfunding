@@ -19,14 +19,12 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.course.atcrowdfunding.bean.Member" >
-    insert into t_member (id, loginacct, userpswd, 
+    insert into t_member (loginacct, userpswd, 
       username, email, authstatus, 
-      usertype, realname, cardnum, 
-      accttype)
-    values (#{id,jdbcType=INTEGER}, #{loginacct,jdbcType=VARCHAR}, #{userpswd,jdbcType=CHAR}, 
+      usertype)
+    values (#{loginacct,jdbcType=VARCHAR}, #{userpswd,jdbcType=CHAR}, 
       #{username,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{authstatus,jdbcType=CHAR}, 
-      #{usertype,jdbcType=CHAR}, #{realname,jdbcType=VARCHAR}, #{cardnum,jdbcType=VARCHAR}, 
-      #{accttype,jdbcType=CHAR})
+      #{usertype,jdbcType=CHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.course.atcrowdfunding.bean.Member" >
     update t_member
@@ -51,7 +49,7 @@
   <select id="queryMebmerlogin" resultMap="BaseResultMap" >
   	select id, loginacct, userpswd, username, email, authstatus, usertype, realname, 
     cardnum, accttype
-    from t_member where loginacct=#{loginacct} and userpswd=#{userpswd}
+    from t_member where loginacct=#{loginacct}
   </select>
   
   

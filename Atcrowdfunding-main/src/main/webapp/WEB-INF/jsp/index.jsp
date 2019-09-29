@@ -109,7 +109,7 @@ h3.break>a {
             <div id="navbar" class="navbar-collapse collapse" style="float:right;">
               <ul class="nav navbar-nav navbar-right">
                 <li><a href="login.htm">登录</a></li>
-                <li><a href="reg.htm">注册</a></li>
+                <li><a href="${APP_PATH }/member/reg.htm">注册</a></li>
               </ul>
             </div>
 			  </div>
@@ -129,13 +129,13 @@ h3.break>a {
         <li data-target="#myCarousel" data-slide-to="2"></li>
       </ol>
       <div class="carousel-inner" role="listbox">
-        <div class="item active" onclick="window.location.href='project.html'" style="cursor:pointer;">
+        <div class="item active" onclick="window.location.href='${APP_PATH }/project/project.htm'" style="cursor:pointer;">
           <img src="img/carousel-1.jpg" alt="First slide">
         </div>
-        <div class="item" onclick="window.location.href='project.html'" style="cursor:pointer;">
+        <div class="item" onclick="window.location.href='${APP_PATH }/project/project.htm'" style="cursor:pointer;">
           <img src="img/carousel-2.jpg" alt="Second slide">
         </div>
-        <div class="item" onclick="window.location.href='project.html'" style="cursor:pointer;">
+        <div class="item" onclick="window.location.href='${APP_PATH }/project/project.htm'" style="cursor:pointer;">
           <img src="img/carousel-3.jpg" alt="Third slide">
         </div>
       </div>

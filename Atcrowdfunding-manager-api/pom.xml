@@ -9,10 +9,10 @@
   		<artifactId>Atcrowdfunding-common</artifactId>
   		<version>0.0.1-SNAPSHOT</version>
   	</dependency>
-  	<dependency>
+  	<!-- <dependency>
   		<groupId>com.course.maven</groupId>
   		<artifactId>Atcrowdfunding-bean</artifactId>
   		<version>0.0.1-SNAPSHOT</version>
-  	</dependency>
+  	</dependency> -->
   </dependencies>
 </project>

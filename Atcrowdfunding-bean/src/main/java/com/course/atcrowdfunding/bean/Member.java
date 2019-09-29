@@ -110,4 +110,11 @@ public class Member {
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
+
+	@Override
+	public String toString() {
+		return "Member [id=" + id + ", loginacct=" + loginacct + ", userpswd=" + userpswd + ", username=" + username
+				+ ", email=" + email + ", authstatus=" + authstatus + ", usertype=" + usertype + ", realname="
+				+ realname + ", cardnum=" + cardnum + ", accttype=" + accttype + ", tel=" + tel + "]";
+	}
 }

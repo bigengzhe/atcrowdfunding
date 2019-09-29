@@ -50,5 +50,11 @@ public class MemberServiceImpl implements MemberService {
 	public List<Map<String, Object>> queryCertByMemberid(Integer memberid) {
 		return memberMapper.queryCertByMemberid(memberid);
 	}
+
+	@Override
+	public void insert(Member member) {
+		// TODO Auto-generated method stub
+		memberMapper.insert(member);
+	}
 	
 }
