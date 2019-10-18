@@ -75,29 +75,8 @@
   </head>
   <body>
  <div class="navbar-wrapper">
-      <div class="container">
-			<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-			  <div class="container">
-				<div class="navbar-header">
-				  <a class="navbar-brand" href="index.html" style="font-size:32px;">尚筹网-创意产品众筹平台</a>
-				</div>
-            <div id="navbar" class="navbar-collapse collapse" style="float:right;">
-              <ul class="nav navbar-nav">
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> 张三<span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="member.html"><i class="glyphicon glyphicon-scale"></i> 会员中心</a></li>
-                    <li><a href="#"><i class="glyphicon glyphicon-comment"></i> 消息</a></li>
-                    <li class="divider"></li>
-                    <li><a href="index.html"><i class="glyphicon glyphicon-off"></i> 退出系统</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-			  </div>
-			</nav>
-      </div>
-    </div>
+ <%@include file="/WEB-INF/jsp/common/membertop.jsp"%>
+ </div>
 
     <div class="container theme-showcase" role="main">
 
@@ -211,21 +190,21 @@
                                                 </div>
                                             </form>
                                         </div>
-                                        <div class="col-md-6 column">
+                                        <!-- <div class="col-md-6 column">
                                             <div class="panel panel-default">
                                                 <div class="panel-body" style="padding:40px;">
                                                     <i class="glyphicon glyphicon-user"></i> 易购账户名：18801282948<br><br><span style="margin-left:60px;">您正在使用该账号发起众筹项目</span>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
                         </div>
                         </div>
                         <div class="panel-footer" style="text-align:center;">
-                            <button type="button" class="btn  btn-default btn-lg" onclick="window.location.href='start-step-2.html'">上一步</button>
-                            <button type="button" class="btn  btn-warning btn-lg" onclick="window.location.href='start-step-4.html'">提交</button>
+                            <button type="button" class="btn  btn-default btn-lg" onclick="window.location.href='${APP_PATH }/project/start-step-2.htm'">上一步</button>
+                            <button type="button" class="btn  btn-warning btn-lg" onclick="window.location.href='${APP_PATH }/project/start-step-4.htm'">提交</button>
                             <a class="btn" > 保存草稿 </a>
                         </div>
                     </div>

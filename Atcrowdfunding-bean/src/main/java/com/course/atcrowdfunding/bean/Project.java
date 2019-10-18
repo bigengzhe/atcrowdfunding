@@ -1,5 +1,7 @@
 package com.course.atcrowdfunding.bean;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Project {
     private Integer id;
 
@@ -24,110 +26,162 @@ public class Project {
     private Integer memberid;
 
     private String createdate;
+    
+    private MultipartFile headimg;
+    
+    private double moneyProgress;
+    
+    public String getHeadimgpath() {
+		return headimgpath;
+	}
 
-    private Integer follower;
+	public String getDetailimgpath() {
+		return detailimgpath;
+	}
 
-    public Integer getId() {
-        return id;
-    }
+	public void setHeadimgpath(String headimgpath) {
+		this.headimgpath = headimgpath;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setDetailimgpath(String detailimgpath) {
+		this.detailimgpath = detailimgpath;
+	}
 
-    public String getName() {
-        return name;
-    }
+	private String headimgpath;
+    
+    private String detailimgpath;
+    
+    private MultipartFile detailimg;
+    
+    private Integer type;
+    
+	public Integer getId() {
+		return id;
+	}
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getRemark() {
-        return remark;
-    }
+	public String getRemark() {
+		return remark;
+	}
 
-    public void setRemark(String remark) {
-        this.remark = remark == null ? null : remark.trim();
-    }
+	public Long getMoney() {
+		return money;
+	}
 
-    public Long getMoney() {
-        return money;
-    }
+	public Integer getDay() {
+		return day;
+	}
 
-    public void setMoney(Long money) {
-        this.money = money;
-    }
+	public String getStatus() {
+		return status;
+	}
 
-    public Integer getDay() {
-        return day;
-    }
+	public String getDeploydate() {
+		return deploydate;
+	}
 
-    public void setDay(Integer day) {
-        this.day = day;
-    }
+	public Long getSupportmoney() {
+		return supportmoney;
+	}
 
-    public String getStatus() {
-        return status;
-    }
+	public Integer getSupporter() {
+		return supporter;
+	}
 
-    public void setStatus(String status) {
-        this.status = status == null ? null : status.trim();
-    }
+	public Integer getCompletion() {
+		return completion;
+	}
 
-    public String getDeploydate() {
-        return deploydate;
-    }
+	public Integer getMemberid() {
+		return memberid;
+	}
 
-    public void setDeploydate(String deploydate) {
-        this.deploydate = deploydate == null ? null : deploydate.trim();
-    }
+	public String getCreatedate() {
+		return createdate;
+	}
 
-    public Long getSupportmoney() {
-        return supportmoney;
-    }
+	public MultipartFile getHeadimg() {
+		return headimg;
+	}
 
-    public void setSupportmoney(Long supportmoney) {
-        this.supportmoney = supportmoney;
-    }
+	public MultipartFile getDetailimg() {
+		return detailimg;
+	}
 
-    public Integer getSupporter() {
-        return supporter;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public void setSupporter(Integer supporter) {
-        this.supporter = supporter;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public Integer getCompletion() {
-        return completion;
-    }
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
 
-    public void setCompletion(Integer completion) {
-        this.completion = completion;
-    }
+	public void setMoney(Long money) {
+		this.money = money;
+	}
 
-    public Integer getMemberid() {
-        return memberid;
-    }
+	public void setDay(Integer day) {
+		this.day = day;
+	}
 
-    public void setMemberid(Integer memberid) {
-        this.memberid = memberid;
-    }
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
-    public String getCreatedate() {
-        return createdate;
-    }
+	public void setDeploydate(String deploydate) {
+		this.deploydate = deploydate;
+	}
 
-    public void setCreatedate(String createdate) {
-        this.createdate = createdate == null ? null : createdate.trim();
-    }
+	public void setSupportmoney(Long supportmoney) {
+		this.supportmoney = supportmoney;
+	}
 
-    public Integer getFollower() {
-        return follower;
-    }
+	public void setSupporter(Integer supporter) {
+		this.supporter = supporter;
+	}
 
-    public void setFollower(Integer follower) {
-        this.follower = follower;
-    }
+	public void setCompletion(Integer completion) {
+		this.completion = completion;
+	}
+
+	public void setMemberid(Integer memberid) {
+		this.memberid = memberid;
+	}
+
+	public void setCreatedate(String createdate) {
+		this.createdate = createdate;
+	}
+
+	public void setHeadimg(MultipartFile headimg) {
+		this.headimg = headimg;
+	}
+
+	public void setDetailimg(MultipartFile detailimg) {
+		this.detailimg = detailimg;
+	}
+
+	public Integer getType() {
+		return type;
+	}
+
+	public void setType(Integer type) {
+		this.type = type;
+	}
+
+	public double getMoneyProgress() {
+		return moneyProgress;
+	}
+
+	public void setMoneyProgress(double moneyProgress) {
+		this.moneyProgress = moneyProgress;
+	}
+	
+
 }

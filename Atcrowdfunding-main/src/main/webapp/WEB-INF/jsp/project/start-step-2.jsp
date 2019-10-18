@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
@@ -74,29 +75,8 @@
 	</style>
   </head>
   <body>
- <div class="navbar-wrapper">
-      <div class="container">
-			<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-			  <div class="container">
-				<div class="navbar-header">
-				  <a class="navbar-brand" href="index.html" style="font-size:32px;">尚筹网-创意产品众筹平台</a>
-				</div>
-            <div id="navbar" class="navbar-collapse collapse" style="float:right;">
-              <ul class="nav navbar-nav">
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> 张三<span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="member.html"><i class="glyphicon glyphicon-scale"></i> 会员中心</a></li>
-                    <li><a href="#"><i class="glyphicon glyphicon-comment"></i> 消息</a></li>
-                    <li class="divider"></li>
-                    <li><a href="index.html"><i class="glyphicon glyphicon-off"></i> 退出系统</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-			  </div>
-			</nav>
-      </div>
+ 	<div class="navbar-wrapper">
+      <%@include file="/WEB-INF/jsp/common/membertop.jsp"%>
     </div>
 
     <div class="container theme-showcase" role="main">
@@ -198,13 +178,17 @@
                                     </blockquote>
                                 </div>
                                 <div class="col-md-12 column">
-                                    <table class="table table-bordered" style="text-align:center;">
+                                <c:if test="${not empty return1}">
+                                	
+                                </c:if>
+                                
+                                	<table class="table table-bordered" style="text-align:center;">
                                       <thead>
                                         <tr style="background-color:#ddd;">
                                           <td>序号</td>
                                           <td>支付金额</td>
                                           <td>名额</td>
-                                          <td>单笔限购</td>
+                                          <!-- <td>单笔限购</td> -->
                                           <td>回报内容</td>
                                           <td>回报时间</td>
                                           <td>运费</td>
@@ -212,21 +196,36 @@
                                         </tr>
                                       </thead>
                                       <tbody>
+                                      <c:forEach items="${list }" var="return1" varStatus="idxStatus">
                                         <tr>
-                                          <td    scope="row">1</td>
-                                          <td>￥1.00</td>
-                                          <td>无限制</td>
-                                          <td>1</td>
-                                          <td>1</td>
-                                          <td>项目结束后的30天</td>
-                                          <td>包邮</td>
+                                          <td    scope="row">${idxStatus.count}</td>
+                                          <td>￥${return1.supportmoney }</td>
                                           <td>
-                                                      <button type="button" class="btn btn-primary btn-xs"><i class=" glyphicon glyphicon-pencil"></i></button>
-                                                      <button type="button" class="btn btn-danger btn-xs"><i class=" glyphicon glyphicon-remove"></i></button>
+                                          	${return1.count }
+                                          </td>
+                                          <!-- <td>1</td> -->
+                                          <td>${return1.content }</td>
+                                          <td>项目结束后的${return1.rtndate }天</td>
+                                          <td>
+                                          	<c:choose>
+                                          		<c:when test="${return1.freight=='0' }">
+                                          			包邮
+                                          		</c:when>
+                                          		<c:otherwise>
+                                          			运费为￥${return1.freight }
+                                          		</c:otherwise>
+                                          	</c:choose>
+                                          </td>
+                                          <td>
+                                                      <!-- <button type="button" class="btn btn-primary btn-xs"><i class=" glyphicon glyphicon-pencil"></i></button> -->
+                                                      <button id="drBtn" onclick="window.location.href='${APP_PATH }/project/doDeleteReturn.do?id=${return1.id}'" type="button" class="btn btn-danger btn-xs"><i class=" glyphicon glyphicon-remove"></i></button>
                                           </td>
                                         </tr>
+                                        </c:forEach>
                                       </tbody>
                                     </table>
+                                
+                                    <!--  -->
                                     <button type="button" class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-plus"></i> 添加回报</button>
                                     <div style="border:10px solid #f60;border-bottom-color: #eceeef;border-width: 10px;width:20px;margin-left:20px;
                                              border-left-color: rgba(221, 221, 221, 0);
@@ -237,45 +236,47 @@
                                       <div class="panel-body">
 
 		<div class="col-md-12 column">
-            <form class="form-horizontal">
+            <form id="regProject" class="form-horizontal" method="post" action="${APP_PATH}/project/doAddReturn.do">
+            	<input type="hidden" name="projectid" value="${project.id }">
               <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">回报类型</label>
                 <div class="col-sm-10">
                      <label class="radio-inline">
-                      <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 实物回报
+                      <input type="radio" name="type" id="inlineRadio1" value="0"> 实物回报
                     </label>
                     <label class="radio-inline">
-                      <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 虚拟物品回报
+                      <input type="radio" name="type" id="inlineRadio2" value="1"> 资金回报
                     </label>
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-sm-2 control-label">支持金额（元）</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" style="width:100px;" >
+                  <input type="text" name="supportmoney" class="form-control" style="width:100px;" >
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-sm-2 control-label">回报内容</label>
                 <div class="col-sm-10">
-                  <textarea class="form-control" rows="5" placeholder="简单描述回报内容，不超过200字"></textarea>
+                
+                  <textarea name="content" class="form-control" rows="5" placeholder="简单描述回报内容，不超过200字"></textarea>
                 </div>
               </div>
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label class="col-sm-2 control-label">说明图片</label>
                 <div class="col-sm-10">
                   <button type="button" class="btn btn-primary btn-lg active">上传图片</button>
                   <label class="control-label">支持jpg、jpeg、png、gif格式，大小不超过2M，建议尺寸：760*510px选择文件</label>
                 </div>
-              </div>
+              </div> -->
               <div class="form-group">
                 <label class="col-sm-2 control-label">回报数量（名）</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" style="width:100px;display:inline" >
+                  <input type="text" name="count" class="form-control" style="width:100px;display:inline" >
                   <label class="control-label">“0”为不限回报数量</label>
                 </div>
               </div>
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">单笔限购</label>
                 <div class="col-sm-10">
                      <label class="radio-inline">
@@ -287,11 +288,11 @@
                     <input type="text" class="form-control" style="width:100px;display:inline" >
                     <label class="radio-inline">默认数量为1，且不超过上方已设置的回报数量</label>
                 </div>
-              </div>
+              </div> -->
               <div class="form-group">
                 <label class="col-sm-2 control-label">运费(元)</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" style="width:100px;display:inline" value="0" >
+                  <input type="text" name="freight" class="form-control" style="width:100px;display:inline" value="0" >
                   <label class="control-label">“0”为包邮</label>
                 </div>
               </div>
@@ -299,10 +300,10 @@
                 <label for="inputEmail3" class="col-sm-2 control-label">发票</label>
                 <div class="col-sm-10">
                      <label class="radio-inline">
-                      <input type="radio" name="inlineRadioOptions1" id="inlineRadio1" value="option1"> 不可开发票
+                      <input type="radio" name="invoice" id="inlineRadio1" value="0"> 不可开发票
                     </label>
                     <label class="radio-inline">
-                      <input type="radio" name="inlineRadioOptions1" id="inlineRadio2" value="option2"> 可开发票（包括个人发票和自定义抬头发票）
+                      <input type="radio" name="invoice" id="inlineRadio2" value="1"> 可开发票（包括个人发票和自定义抬头发票）
                     </label>
                 </div>
               </div>
@@ -312,14 +313,14 @@
                      <label class="radio-inline">
                       项目结束后
                     </label>
-                    <input type="text" class="form-control" style="width:100px;display:inline" >
+                    <input type="number" name="rtndate" class="form-control" style="width:100px;display:inline" >
                     <label class="radio-inline">天，向支持者发送回报</label>
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label"></label>
                 <div class="col-sm-10">
-                      <button type="button" class="btn btn-primary">确定</button>
+                      <button id="nextBtn" type="button" class="btn btn-primary">确定</button>
                       <button type="button" class="btn btn-default">取消</button>
                 </div>
               </div>
@@ -349,8 +350,8 @@
                         </div>
                         </div>
                         <div class="panel-footer" style="text-align:center;">
-                            <button type="button" class="btn  btn-default btn-lg" onclick="window.location.href='start-step-1.html'">上一步</button>
-                            <button type="button" class="btn  btn-warning btn-lg" onclick="window.location.href='start-step-3.html'">下一步</button>
+                            <button type="button" class="btn  btn-default btn-lg" onclick="window.location.href='${APP_PATH }/project/start-step-2.htm'">上一步</button>
+                            <button type="button" class="btn  btn-warning btn-lg" onclick="window.location.href='${APP_PATH }/project/start-step-3.htm'">下一步</button>
                             <a class="btn" > 预览 </a>
                         </div>
                     </div>
@@ -381,10 +382,14 @@
 	<script src="${APP_PATH }/script/docs.min.js"></script>
     <script src="${APP_PATH }/script/back-to-top.js"></script>
 	<script>
-$('#myTab a').click(function (e) {
-  e.preventDefault()
-  $(this).tab('show')
-})
+	$('#myTab a').click(function (e) {
+	  e.preventDefault()
+	  $(this).tab('show')
+	});
+	$("#nextBtn").click(function(){
+		$("#regProject").submit();
+	});
+	
 	</script>
   </body>
 </html>

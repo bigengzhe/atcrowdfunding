@@ -62,7 +62,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="thumbnail" style="    border-radius: 0px;">
-						<img src="img/services-box1.jpg" class="img-thumbnail" alt="">
+						<img src="${APP_PATH }/img/services-box1.jpg" class="img-thumbnail" alt="">
 						<div class="caption" style="text-align:center;">
 							<h3>
 								${sessionScope.loginMember.loginacct }
@@ -87,7 +87,7 @@
 				<div class="list-group-item active">
 					资产总览<span class="badge"><i class="glyphicon glyphicon-chevron-right"></i></span>
 				</div>
-				<div class="list-group-item " style="cursor:pointer;" onclick="window.location.href='minecrowdfunding.html'">
+				<div class="list-group-item " style="cursor:pointer;" onclick="window.location.href='${APP_PATH }/member/minecrowdfunding.htm'">
 					我的众筹<span class="badge"><i class="glyphicon glyphicon-chevron-right"></i></span>
 				</div>
 			</div>

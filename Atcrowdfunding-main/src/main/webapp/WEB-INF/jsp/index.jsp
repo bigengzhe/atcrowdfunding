@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
@@ -100,11 +101,16 @@ h3.break>a {
   </head>
   <body>
  <div class="navbar-wrapper">
-      <div class="container">
+ 	<c:choose>
+ 		<c:when test="${not empty sessionScope.loginMember }">
+ 			<%@include file="/WEB-INF/jsp/common/membertop.jsp"%>
+ 		</c:when>
+ 		<c:otherwise>
+ 		<div class="container">
 			<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 			  <div class="container">
 				<div class="navbar-header">
-				  <a class="navbar-brand" href="index.html" style="font-size:32px;">尚筹网-创意产品众筹平台</a>
+				  <a class="navbar-brand" href="#" style="font-size:32px;">尚筹网-创意产品众筹平台</a>
 				</div>
             <div id="navbar" class="navbar-collapse collapse" style="float:right;">
               <ul class="nav navbar-nav navbar-right">
@@ -116,7 +122,11 @@ h3.break>a {
 			</nav>
 
       </div>
-    </div>
+ 		</c:otherwise>
+ 	</c:choose>
+	
+	
+ </div>
 
 
     <!-- Carousel

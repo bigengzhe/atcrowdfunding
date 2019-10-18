@@ -1,6 +1,7 @@
 package com.course.atcrowdfunding.potal.controller;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,13 +24,19 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.course.atcrowdfunding.manager.service.CertService;
 import com.course.atcrowdfunding.bean.Cert;
+import com.course.atcrowdfunding.bean.Form;
 import com.course.atcrowdfunding.bean.Member;
 import com.course.atcrowdfunding.bean.MemberCert;
+import com.course.atcrowdfunding.bean.Project;
+import com.course.atcrowdfunding.bean.Return;
 import com.course.atcrowdfunding.bean.Ticket;
 
 import com.course.atcrowdfunding.potal.listener.PassListener;
 import com.course.atcrowdfunding.potal.listener.RefuseListener;
+import com.course.atcrowdfunding.potal.service.FormService;
 import com.course.atcrowdfunding.potal.service.MemberService;
+import com.course.atcrowdfunding.potal.service.ProjectService;
+import com.course.atcrowdfunding.potal.service.ReturnService;
 import com.course.atcrowdfunding.potal.service.TicketService;
 import com.course.atcrowdfunding.util.AjaxResult;
 import com.course.atcrowdfunding.util.Const;
@@ -56,8 +63,21 @@ public class MemberController {
 	private RuntimeService runtimeService;
 	
 	@Autowired
+	private ProjectService projectService;
+	
+	@Autowired
 	private TaskService taskService ;
-
+	
+	@Autowired
+	private FormService formService;
+	
+	@Autowired
+	private ReturnService returnService;
+	
+	@RequestMapping("/member")
+	public String member(){		
+		return "member/member";
+	}
 	@RequestMapping("/accttype")
 	public String accttype(){		
 		return "member/accttype";
@@ -71,6 +91,31 @@ public class MemberController {
 	public String req(){
 		return "member/reg";
 	}
+	@RequestMapping("/minecrowdfunding")
+	public String minecrowdfunding(HttpSession session,Map map){
+		Member member = (Member)session.getAttribute(Const.LOGIN_MEMBER);
+		List<Project> list=projectService.selectByMemberid(member.getId());
+		List<Map<String,Object>> mymap=new ArrayList<>();
+		Map<String,Object> tmap=null;
+		List<Form> forms=formService.selectByMemberid(member.getId());
+		for (Form form : forms) {
+			tmap=new HashMap<>();
+			Return myreturn= returnService.selectByPrimarykey(form.getReturnid());
+			Project project=projectService.selectByProjectId(myreturn.getProjectid());
+			tmap.put("fid", form.getId());
+			tmap.put("fdate", form.getDate());
+			tmap.put("fmoney", form.getMoney());
+			tmap.put("fstatus", form.getStatus());
+			tmap.put("pname", project.getName());
+			tmap.put("pmpro", project.getMoneyProgress());//项目进度
+			tmap.put("rfreight", myreturn.getFreight());
+			
+			mymap.add(tmap);
+		}
+		map.put("list", list);
+		map.put("mymap", mymap);
+		return "member/minecrowdfunding";
+	}
 	@RequestMapping("/doReg")
 	public String doReg(Member member,HttpSession session){
 		
@@ -82,7 +127,11 @@ public class MemberController {
 		return "redirect:/member.htm";
 	}
 	@RequestMapping("/uploadCert")
-	public String uploadCert(){		
+	public String uploadCert(HttpSession session){
+		Member member = (Member)session.getAttribute(Const.LOGIN_MEMBER);
+		List<Cert> queryCertByAccttype = certService.queryCertByAccttype(member.getAccttype());
+		session.setAttribute("queryCertByAccttype", queryCertByAccttype);
+		
 		return "member/uploadCert";
 	}
 	

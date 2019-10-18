@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.course.atcrowdfunding.bean.MemberCert;
+import com.course.atcrowdfunding.bean.Project;
 import com.course.atcrowdfunding.bean.User;
 
 public class Data {
@@ -14,6 +15,8 @@ public class Data {
 	private List<Integer> ids ;
 	
 	private List<MemberCert> certimgs = new ArrayList<MemberCert>();
+	
+	//private List<Project> projects=new ArrayList<>();
 
 	public List<User> getUserList() {
 		return userList;

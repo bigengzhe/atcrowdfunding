@@ -46,7 +46,7 @@
 				<a href="auth_adv.html"><i class="glyphicon glyphicon-check"></i> 广告审核</a> 
 			</li>
 			<li style="height:30px;">
-				<a href="#"><i class="glyphicon glyphicon-check"></i> 项目审核</a> 
+				<a href="${APP_PATH }/authproject/index.htm"><i class="glyphicon glyphicon-check"></i> 项目审核</a> 
 			</li>
 		</ul>
 	</li>
